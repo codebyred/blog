@@ -1,0 +1,26 @@
+{{ define "main" }}
+<div class="single">
+  <div class="singleHead">
+    <div class="singleHeadTexts">
+      <h1 class="singleHeadTitle">{{.Title}}</h1>
+      <p class="singleHeadDesc">{{.Params.description}}</p>
+      <div class="singleHeadDetail">
+        <span>{{ range (.GetTerms "authors")}}
+          <a href={{.Permalink}}>{{ .Name }}</a>
+          {{end}}
+        </span>
+        {{ range (.GetTerms "tags")}}
+        <a href={{.Permalink}} class="singleCategory">{{ .Name }}</a>
+        {{end}}
+      </div>
+     
+    </div>
+  </div>
+  <div class="singleBottom">
+    <div class="singleContent">{{ .Content }}</div>
+    <div class="singleRightBar">
+
+    </div>
+  </div>
+</div>
+{{ end }}
