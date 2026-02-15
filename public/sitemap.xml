@@ -2,31 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://example.org/authors/</loc>
+    <loc>http://localhost:1313/authors/</loc>
     <lastmod>2026-02-14T18:30:27+06:00</lastmod>
   </url><url>
-    <loc>https://example.org/tags/ceph/</loc>
+    <loc>http://localhost:1313/tags/ceph/</loc>
     <lastmod>2026-02-14T18:30:27+06:00</lastmod>
   </url><url>
-    <loc>https://example.org/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2026-02-14T18:30:27+06:00</lastmod>
   </url><url>
-    <loc>https://example.org/tags/proxmox/</loc>
+    <loc>http://localhost:1313/tags/proxmox/</loc>
     <lastmod>2026-02-14T18:30:27+06:00</lastmod>
   </url><url>
-    <loc>https://example.org/proxmox-ceph/</loc>
+    <loc>http://localhost:1313/proxmox-ceph/</loc>
     <lastmod>2026-02-14T18:30:27+06:00</lastmod>
   </url><url>
-    <loc>https://example.org/authors/redoan/</loc>
+    <loc>http://localhost:1313/authors/redoan/</loc>
     <lastmod>2026-02-14T18:30:27+06:00</lastmod>
   </url><url>
-    <loc>https://example.org/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2026-02-14T18:30:27+06:00</lastmod>
   </url><url>
-    <loc>https://example.org/tags/general/</loc>
+    <loc>http://localhost:1313/tags/general/</loc>
     <lastmod>2026-02-14T16:34:04+06:00</lastmod>
   </url><url>
-    <loc>https://example.org/ssh-root-login/</loc>
+    <loc>http://localhost:1313/ssh-root-login/</loc>
     <lastmod>2026-02-14T16:34:04+06:00</lastmod>
   </url>
 </urlset>

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Proxmox on My New Hugo Site</title>
-    <link>https://example.org/tags/proxmox/</link>
-    <description>Recent content in Proxmox on My New Hugo Site</description>
+    <title>Proxmox on CodebyRed | Blog</title>
+    <link>http://localhost:1313/tags/proxmox/</link>
+    <description>Recent content in Proxmox on CodebyRed | Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 14 Feb 2026 18:30:27 +0600</lastBuildDate>
-    <atom:link href="https://example.org/tags/proxmox/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/proxmox/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Proxmox Ceph</title>
-      <link>https://example.org/proxmox-ceph/</link>
+      <link>http://localhost:1313/proxmox-ceph/</link>
       <pubDate>Sat, 14 Feb 2026 18:30:27 +0600</pubDate>
-      <guid>https://example.org/proxmox-ceph/</guid>
+      <guid>http://localhost:1313/proxmox-ceph/</guid>
       <description>What Proxmox HA Does Proxmox VE’s HA system automatically:&#xA;Detects node or VM failures Migrates VMs or containers to another healthy node Restarts them automatically using shared storage (Ceph RBD or CephFS) HA is managed by:&#xA;pve-ha-manager (global controller) pve-ha-crm (cluster resource manager) pve-ha-lrm (local resource manager on each node) </description>
     </item>
   </channel>
