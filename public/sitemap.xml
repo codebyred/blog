@@ -2,31 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/authors/</loc>
+    <loc>http://localhost:1313/blog/authors/</loc>
     <lastmod>2026-02-14T18:30:27+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/ceph/</loc>
+    <loc>http://localhost:1313/blog/tags/ceph/</loc>
     <lastmod>2026-02-14T18:30:27+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://localhost:1313/blog/</loc>
     <lastmod>2026-02-14T18:30:27+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/proxmox/</loc>
+    <loc>http://localhost:1313/blog/tags/proxmox/</loc>
     <lastmod>2026-02-14T18:30:27+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/proxmox-ceph/</loc>
+    <loc>http://localhost:1313/blog/proxmox-ceph/</loc>
     <lastmod>2026-02-14T18:30:27+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/authors/redoan/</loc>
+    <loc>http://localhost:1313/blog/authors/redoan/</loc>
     <lastmod>2026-02-14T18:30:27+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>http://localhost:1313/blog/tags/</loc>
     <lastmod>2026-02-14T18:30:27+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/general/</loc>
+    <loc>http://localhost:1313/blog/tags/general/</loc>
     <lastmod>2026-02-14T16:34:04+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/ssh-root-login/</loc>
+    <loc>http://localhost:1313/blog/ssh-root-login/</loc>
     <lastmod>2026-02-14T16:34:04+06:00</lastmod>
   </url>
 </urlset>
