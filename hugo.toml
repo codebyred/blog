@@ -1,9 +1,9 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://codebyred.github.io/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'CodebyRed | Blog'
 
 [params]
-  description = "The fastest blog"
+  description = "My personal blog"
   dateFormat = "Jan 2, 2006"
 
 [taxonomies]
