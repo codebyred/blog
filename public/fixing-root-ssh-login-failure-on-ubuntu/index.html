@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content=My&#32;personal&#32;blog>
+  <meta name="description" content=Enable&#32;remote&#32;ssh&#32;using&#32;root&#32;user&#32;and&#32;password>
   <link rel="stylesheet" href="/blog/styles/style.css">
   <link rel="icon" href="/blog/images/favicon.png">
-  <title>Tags</title>
+  <title>Fixing Root SSH Login Failure on Ubuntu</title>
 </head>
 
 <body>
@@ -50,102 +50,125 @@
     </div>
   </div>
 </nav>
+    
+<div class="single">
+  <div class="singleHead">
+    <div class="singleHeadTexts">
+      <h1 class="singleHeadTitle">Fixing Root SSH Login Failure on Ubuntu</h1>
+      <p class="singleHeadDesc">Enable remote ssh using root user and password</p>
+      <div class="singleHeadDetail">
+        <span>
+          <a href=http://localhost:1313/blog/authors/redoan/>Redoan</a>
+          
+        </span>
+        
+        <a href=http://localhost:1313/blog/tags/general/ class="singleCategory">general</a>
+        
+      </div>
      
-
-<div class="list">
-  
-  <div class="listItem">
-    <div class="listItemTexts">
-      <h1 class="listItemTitle">
-        <a href="http://localhost:1313/blog/tags/backup/">Backup</a>
-      </h1>
-      <p class="listItemDesc"></p>
-      <div class="listItemDetail">
-        <span
-          ></span
-        >
-        <time>Feb 16, 2026</time>
-      </div>
-      <div class="listItemCategories">
-        
-      </div>
     </div>
   </div>
-  
-  <div class="listItem">
-    <div class="listItemTexts">
-      <h1 class="listItemTitle">
-        <a href="http://localhost:1313/blog/tags/linux/">Linux</a>
-      </h1>
-      <p class="listItemDesc"></p>
-      <div class="listItemDetail">
-        <span
-          ></span
-        >
-        <time>Feb 16, 2026</time>
-      </div>
-      <div class="listItemCategories">
-        
-      </div>
-    </div>
-  </div>
-  
-  <div class="listItem">
-    <div class="listItemTexts">
-      <h1 class="listItemTitle">
-        <a href="http://localhost:1313/blog/tags/ceph/">Ceph</a>
-      </h1>
-      <p class="listItemDesc"></p>
-      <div class="listItemDetail">
-        <span
-          ></span
-        >
-        <time>Feb 14, 2026</time>
-      </div>
-      <div class="listItemCategories">
-        
-      </div>
-    </div>
-  </div>
-  
-  <div class="listItem">
-    <div class="listItemTexts">
-      <h1 class="listItemTitle">
-        <a href="http://localhost:1313/blog/tags/proxmox/">Proxmox</a>
-      </h1>
-      <p class="listItemDesc"></p>
-      <div class="listItemDetail">
-        <span
-          ></span
-        >
-        <time>Feb 14, 2026</time>
-      </div>
-      <div class="listItemCategories">
-        
-      </div>
-    </div>
-  </div>
-  
-  <div class="listItem">
-    <div class="listItemTexts">
-      <h1 class="listItemTitle">
-        <a href="http://localhost:1313/blog/tags/general/">General</a>
-      </h1>
-      <p class="listItemDesc"></p>
-      <div class="listItemDetail">
-        <span
-          ></span
-        >
-        <time>Feb 14, 2026</time>
-      </div>
-      <div class="listItemCategories">
-        
-      </div>
-    </div>
-  </div>
-   
+  <div class="singleBottom">
+    <div class="singleContent"><h1 id="overview">Overview</h1>
+<p>Attempting to log in as root over SSH may fail with errors such as:</p>
+<pre tabindex="0"><code>Connection closed by authenticating user root [preauth]
+pam_unix(sshd:auth): authentication failure
+</code></pre><p>Even after enabling:</p>
+<pre tabindex="0"><code>PermitRootLogin yes
+</code></pre><p>the login may still fail.</p>
+<h1 id="root-cause">Root Cause</h1>
+<p>On Ubuntu systems:</p>
+<ul>
+<li>
+<p>The root account is locked by default</p>
+</li>
+<li>
+<p>Password authentication over SSH is often disabled</p>
+</li>
+</ul>
+<p>Example Check</p>
+<pre tabindex="0"><code>sudo passwd -S root
+</code></pre><p>Example Output:</p>
+<pre tabindex="0"><code>root L YYYY-MM-DD 0 99999 7 -1
+</code></pre><p>Meaning:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L</td>
+<td>Locked account</td>
+</tr>
+<tr>
+<td>P</td>
+<td>Password set (Unlocked)</td>
+</tr>
+</tbody>
+</table>
+<p>If the account is locked, SSH password authentication will fail even if root login is permitted.</p>
+<p>Resolution
+Step 1 — Enable Root Login and Password Authentication</p>
+<p>Edit SSH configuration:</p>
+<p>sudo nano /etc/ssh/sshd_config</p>
+<p>Ensure the following lines exist and are not commented:</p>
+<p>PermitRootLogin yes
+PasswordAuthentication yes
+UsePAM yes</p>
+<p>Step 1.1 — Check SSH Override Configuration</p>
+<p>Some systems override settings using included config files:</p>
+<p>sudo nano /etc/ssh/sshd_config.d/*.conf</p>
+<p>Verify these files do not override the above settings.</p>
+<p>Step 2 — Unlock Root Account and Set Password</p>
+<p>Set root password:</p>
+<p>sudo passwd root</p>
+<p>Step 2.1 — Verify Root Account Status
+sudo passwd -S root</p>
+<p>Expected Output:</p>
+<p>root P YYYY-MM-DD 0 99999 7 -1</p>
+<p>P confirms the account is unlocked and password is set.</p>
+<p>Step 3 — Restart SSH Service
+sudo systemctl restart ssh</p>
+<p>Step 4 — Verify Effective SSH Configuration
+sshd -T | grep -E &lsquo;permitrootlogin|passwordauthentication&rsquo;</p>
+<p>Expected Output:</p>
+<p>permitrootlogin yes
+passwordauthentication yes</p>
+<p>Validation</p>
+<p>Test SSH login:</p>
+<p>ssh root@server-ip</p>
+<p>Security Considerations (Important)</p>
+<p>⚠ Enabling root SSH login with password authentication is not recommended for:</p>
+<p>Production systems</p>
+<p>Internet-facing servers</p>
+<p>Recommended Secure Configuration</p>
+<p>Use key-based or sudo-based access instead.</p>
+<p>PermitRootLogin prohibit-password
+PasswordAuthentication no</p>
+<p>Recommended workflow:</p>
+<p>ssh user@server
+sudo -i</p>
+<p>Best Practice Recommendations</p>
+<p>Use SSH key authentication</p>
+<p>Disable password authentication when possible</p>
+<p>Restrict root login</p>
+<p>Use sudo for privilege escalation</p>
+<p>Consider fail2ban or similar protection</p>
+<p>Summary
+Issue	Cause	Fix
+Root SSH login fails	Root account locked	Set root password
+PermitRootLogin yes not working	Password auth disabled or root locked	Enable password auth + unlock root
+Authentication failure logs	PAM + locked account	Unlock root and verify SSH config</p>
 </div>
- 
+    <div class="singleRightBar">
+
+    </div>
+  </div>
+</div>
+
     <div class="footer">
     <div class="footerLinks">
         <a href="/">codebyred</a> |

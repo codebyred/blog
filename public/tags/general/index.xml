@@ -13,7 +13,7 @@
       <link>http://localhost:1313/blog/ssh-root-login/</link>
       <pubDate>Sat, 14 Feb 2026 16:34:04 +0600</pubDate>
       <guid>http://localhost:1313/blog/ssh-root-login/</guid>
-      <description>Hello</description>
+      <description>Problem Attempting to log in as root over SSH fails with errors like:&#xA;Connection closed by authenticating user root [preauth] pam_unix(sshd:auth): authentication failure Even after setting:&#xA;PermitRootLogin yes Root Cause On Ubuntu, the root account is locked by default and password authentication is often disabled.&#xA;Example status:&#xA;sudo passwd -S root Output:&#xA;root L YYYY-MM-DD 0 99999 7 -1 L = Locked account SSH password authentication cannot succeed without an unlocked root password Resolution Steps 1.</description>
     </item>
   </channel>
 </rss>

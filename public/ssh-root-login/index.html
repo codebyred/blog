@@ -69,7 +69,68 @@
     </div>
   </div>
   <div class="singleBottom">
-    <div class="singleContent"><p>Hello</p>
+    <div class="singleContent"><h2 id="problem">Problem</h2>
+<p>Attempting to log in as <code>root</code> over SSH fails with errors like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">Connection</span><span class="w"> </span><span class="vg">closed</span><span class="w"> </span><span class="vg">by</span><span class="w"> </span><span class="vg">authenticating</span><span class="w"> </span><span class="vg">user</span><span class="w"> </span><span class="vg">root</span><span class="w"> </span><span class="p">[</span><span class="vg">preauth</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="vg">pam_unix</span><span class="p">(</span><span class="nl">sshd:</span><span class="vg">auth</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="vg">authentication</span><span class="w"> </span><span class="vg">failure</span>
+</span></span></code></pre></div><p>Even after setting:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">PermitRootLogin</span><span class="w"> </span><span class="vg">yes</span>
+</span></span></code></pre></div><h2 id="root-cause">Root Cause</h2>
+<p>On Ubuntu, the <strong>root account is locked by default</strong> and <strong>password authentication is often disabled</strong>.</p>
+<p>Example status:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">sudo</span><span class="w"> </span><span class="vg">passwd</span><span class="w"> </span><span class="o">-</span><span class="vg">S</span><span class="w"> </span><span class="vg">root</span>
+</span></span></code></pre></div><p>Output:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">root</span><span class="w"> </span><span class="vg">L</span><span class="w"> </span><span class="vg">YYYY</span><span class="o">-</span><span class="vg">MM</span><span class="o">-</span><span class="vg">DD</span><span class="w"> </span><span class="il">0</span><span class="w"> </span><span class="il">99999</span><span class="w"> </span><span class="il">7</span><span class="w"> </span><span class="il">-1</span>
+</span></span></code></pre></div><ul>
+<li><code>L</code> = <strong>Locked account</strong></li>
+<li>SSH password authentication cannot succeed without an unlocked root password</li>
+</ul>
+<h2 id="resolution-steps">Resolution Steps</h2>
+<h3 id="1-enable-root-login-and-password-authentication">1. Enable root login and password authentication</h3>
+<p>Edit SSH config:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">sudo</span><span class="w"> </span><span class="vg">nano</span><span class="w"> </span><span class="o">/</span><span class="vg">etc</span><span class="o">/</span><span class="vg">ssh</span><span class="o">/</span><span class="vg">sshd_config</span>
+</span></span></code></pre></div><p>Ensure these lines are present and <strong>uncommented</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">PermitRootLogin</span><span class="w"> </span><span class="vg">yes</span>
+</span></span><span class="line"><span class="cl"><span class="vg">PasswordAuthentication</span><span class="w"> </span><span class="vg">yes</span>
+</span></span><span class="line"><span class="cl"><span class="vg">UsePAM</span><span class="w"> </span><span class="vg">yes</span>
+</span></span></code></pre></div><p>Also check override files:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">sudo</span><span class="w"> </span><span class="vg">nano</span><span class="w"> </span><span class="o">/</span><span class="vg">etc</span><span class="o">/</span><span class="vg">ssh</span><span class="o">/</span><span class="vg">sshd_config</span><span class="o">.</span><span class="vg">d</span><span class="o">/*.</span><span class="vg">conf</span>
+</span></span></code></pre></div><ol start="2">
+<li>Unlock and set root password</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">sudo</span><span class="w"> </span><span class="vg">passwd</span><span class="w"> </span><span class="vg">root</span>
+</span></span></code></pre></div><p>Verify:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">sudo</span><span class="w"> </span><span class="vg">passwd</span><span class="w"> </span><span class="o">-</span><span class="vg">S</span><span class="w"> </span><span class="vg">root</span>
+</span></span></code></pre></div><p>Expected:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">root</span><span class="w"> </span><span class="vg">P</span><span class="w"> </span><span class="vg">YYYY</span><span class="o">-</span><span class="vg">MM</span><span class="o">-</span><span class="vg">DD</span><span class="w"> </span><span class="il">0</span><span class="w"> </span><span class="il">99999</span><span class="w"> </span><span class="il">7</span><span class="w"> </span><span class="il">-1</span>
+</span></span></code></pre></div><ol start="3">
+<li>Restart SSH service</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">sudo</span><span class="w"> </span><span class="vg">systemctl</span><span class="w"> </span><span class="vg">restart</span><span class="w"> </span><span class="vg">ssh</span>
+</span></span></code></pre></div><ol start="4">
+<li>Verify effective SSH configuration</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">sshd</span><span class="w"> </span><span class="o">-</span><span class="vg">T</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="vg">grep</span><span class="w"> </span><span class="o">-</span><span class="vg">E</span><span class="w"> </span><span class="c1">&#39;permitrootlogin|passwordauthentication&#39;</span>
+</span></span></code></pre></div><p>Expected:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">permitrootlogin</span><span class="w"> </span><span class="vg">yes</span>
+</span></span><span class="line"><span class="cl"><span class="vg">passwordauthentication</span><span class="w"> </span><span class="vg">yes</span>
+</span></span></code></pre></div><h2 id="validation">Validation</h2>
+<p>Test login:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">ssh</span><span class="w"> </span><span class="vg">root@server</span><span class="o">-</span><span class="vg">ip</span>
+</span></span></code></pre></div><h2 id="security-note-important">Security Note (Important)</h2>
+<p>Enabling root SSH login with passwords is <strong>not recommended</strong> for production or internet-facing systems.</p>
+<h3 id="recommended-long-term-configuration">Recommended long-term configuration:</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">PermitRootLogin</span><span class="w"> </span><span class="vg">prohibit</span><span class="o">-</span><span class="vg">password</span>
+</span></span><span class="line"><span class="cl"><span class="vg">PasswordAuthentication</span><span class="w"> </span><span class="vg">no</span>
+</span></span></code></pre></div><p>Use:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-basic" data-lang="basic"><span class="line"><span class="cl"><span class="vg">ssh</span><span class="w"> </span><span class="vg">user@server</span>
+</span></span><span class="line"><span class="cl"><span class="vg">sudo</span><span class="w"> </span><span class="o">-</span><span class="vg">i</span>
+</span></span></code></pre></div><h2 id="summary">Summary</h2>
+<ul>
+<li>Root SSH failures were due to a <strong>locked root account</strong></li>
+<li><code>PermitRootLogin yes</code> alone is <strong>not sufficient</strong></li>
+<li>Root password must be explicitly set and SSH password auth enabled</li>
+</ul>
 </div>
     <div class="singleRightBar">
 
@@ -104,7 +165,7 @@
     </div>
 </div>
   </div>
-  <script src="js/app.js"></script>
+  <script src="/blog/js/app.js"></script>
 </body>
 
 </html>
