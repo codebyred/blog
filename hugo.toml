@@ -9,3 +9,6 @@ title = 'CodebyRed | Blog'
 [taxonomies]
   tags = "tags"
   author = "authors"
+
+[markup.highlight]
+noClasses = false
