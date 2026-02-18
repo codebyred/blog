@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on CodebyRed | Blog</title><link>https://codebyred.github.io/blog/tags/linux/</link><description>Recent content in Linux on CodebyRed | Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 16 Feb 2026 10:12:42 +0600</lastBuildDate><atom:link href="https://codebyred.github.io/blog/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Lvm Snapshot Backup and Restore Guide</title><link>https://codebyred.github.io/blog/lvm-snapshot-backup-and-restore-guide/</link><pubDate>Mon, 16 Feb 2026 10:12:42 +0600</pubDate><guid>https://codebyred.github.io/blog/lvm-snapshot-backup-and-restore-guide/</guid><description>Overview This document explains how to perform block-level backup and restore of an LVM logical volume using:
+LVM snapshots (point-in-time consistency)
+dd (block copy)
+pigz (parallel compression)
+ssh (secure transfer)
+This method is suitable for:
+Full system backup
+Bare-metal restore scenarios
+Disaster recovery preparation
+Exact disk state preservation
+Backup Transfer Methods Two supported transfer methods are available:
+Method A — SSH Streaming Pipeline Method B — SCP File Transfer Environment Example Component Value Volume Group ubuntu-vg Root Logical Volume ubuntu-lv Snapshot Name root_snap Backup Server 10.</description></item></channel></rss>
