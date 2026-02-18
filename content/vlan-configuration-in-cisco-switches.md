@@ -3,7 +3,7 @@ title = 'Vlan Configuration in Cisco Switches'
 description = "" 
 date = 2026-02-18T15:27:39+06:00
 draft = false
-tags = ["general"]
+tags = ["cisco","switch","vlan"]
 authors = ["Redoan"]
 +++
 
