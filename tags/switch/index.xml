@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Switch on CodebyRed | Blog</title><link>https://codebyred.github.io/blog/tags/switch/</link><description>Recent content in Switch on CodebyRed | Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 18 Feb 2026 15:27:39 +0600</lastBuildDate><atom:link href="https://codebyred.github.io/blog/tags/switch/index.xml" rel="self" type="application/rss+xml"/><item><title>Vlan Configuration in Cisco Switches</title><link>https://codebyred.github.io/blog/vlan-configuration-in-cisco-switches/</link><pubDate>Wed, 18 Feb 2026 15:27:39 +0600</pubDate><guid>https://codebyred.github.io/blog/vlan-configuration-in-cisco-switches/</guid><description>Overview On Cisco switches, VLAN configuration is primarily performed at Layer 2 (switching) using VLAN databases and per-port VLAN assignment. Layer 3 VLAN routing is performed using SVI (Switched Virtual Interface) on Layer 3 switches or routers.
+Cisco separates VLAN configuration into two main components:
+Switchport VLAN Configuration (Layer 2)
+SVI – Switched Virtual Interface (Layer 3)
+Switchport VLAN (Layer 2 VLAN Switching) Description Switchport VLAN configuration defines:
+Which VLAN a port belongs to</description></item></channel></rss>

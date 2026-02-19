@@ -16,9 +16,15 @@ Bare-metal restore scenarios
 Disaster recovery preparation
 Exact disk state preservation
 Backup Transfer Methods Two supported transfer methods are available:
-Method A — SSH Streaming Pipeline Method B — SCP File Transfer Environment Example Component Value Volume Group ubuntu-vg Root Logical Volume ubuntu-lv Snapshot Name root_snap Backup Server 10.</description></item><item><title>Proxmox Ceph</title><link>https://codebyred.github.io/blog/proxmox-ceph/</link><pubDate>Sat, 14 Feb 2026 18:30:27 +0600</pubDate><guid>https://codebyred.github.io/blog/proxmox-ceph/</guid><description>What Proxmox HA Does Proxmox VE’s HA system automatically:
-Detects node or VM failures Migrates VMs or containers to another healthy node Restarts them automatically using shared storage (Ceph RBD or CephFS) HA is managed by:
-pve-ha-manager (global controller) pve-ha-crm (cluster resource manager) pve-ha-lrm (local resource manager on each node)</description></item><item><title>Fixing Root SSH Login Failure on Ubuntu</title><link>https://codebyred.github.io/blog/fixing-root-ssh-login-failure-on-ubuntu/</link><pubDate>Sat, 14 Feb 2026 16:34:04 +0600</pubDate><guid>https://codebyred.github.io/blog/fixing-root-ssh-login-failure-on-ubuntu/</guid><description>Overview Attempting to log in as root over SSH may fail with errors such as:
+Method A — SSH Streaming Pipeline Method B — SCP File Transfer Environment Example Component Value Volume Group ubuntu-vg Root Logical Volume ubuntu-lv Snapshot Name root_snap Backup Server 10.</description></item><item><title>Proxmox HA and Ceph Storage — Deployment &amp; Concepts Guide</title><link>https://codebyred.github.io/blog/proxmox-ceph/</link><pubDate>Sat, 14 Feb 2026 18:30:27 +0600</pubDate><guid>https://codebyred.github.io/blog/proxmox-ceph/</guid><description>Overview This document explains:
+How High Availability (HA) works in Proxmox VE
+The storage requirements for HA
+Core Ceph architecture concepts
+Ceph sizing and configuration parameters
+A step-by-step guide to simulating HA in a nested environment
+Extending a Ceph cluster using a standalone Ubuntu storage node
+This guide is intended for lab experimentation or foundational understanding before production deployment.
+Proxmox High Availability What Proxmox HA Provides Proxmox VE’s High Availability subsystem automatically:</description></item><item><title>Fixing Root SSH Login Failure on Ubuntu</title><link>https://codebyred.github.io/blog/fixing-root-ssh-login-failure-on-ubuntu/</link><pubDate>Sat, 14 Feb 2026 16:34:04 +0600</pubDate><guid>https://codebyred.github.io/blog/fixing-root-ssh-login-failure-on-ubuntu/</guid><description>Overview Attempting to log in as root over SSH may fail with errors such as:
 Connection closed by authenticating user root [preauth] pam_unix(sshd:auth): authentication failure Even after enabling:
 PermitRootLogin yes the login may still fail.
 Root Cause On Ubuntu systems:
