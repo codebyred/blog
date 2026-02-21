@@ -12,24 +12,32 @@ toggle.addEventListener("click", ()=>{
   body.classList.toggle("light")
 })
 
-fetch('/index.json')
+fetch('/blog/index.json')
   .then(res => res.json())
   .then(data => pages = data);
+
+function showResults(results) {
+  searchResults.innerHTML = results.map(r => `<div class="resultItem">${r}</div>`).join('');
+  searchResults.style.display = 'block';
+}
+
+function hideResults() {
+  searchResults.style.display = 'none';
+}
 
 function renderResults(results) {
   searchResults.innerHTML = '';
   if (!results.length) {
-    searchResults.innerHTML = '<p>No results found.</p>';
-    return;
+    searchResults.innerHTML = '<p style="padding:8px;">No results found.</p>';
+  } else {
+    results.forEach(page => {
+      const div = document.createElement('div');
+      div.classList.add('resultItem');
+      div.innerHTML = `<a href="${page.permalink}"><h3>${page.title}</h3><p>Tags: ${page.tags.join(', ')}</p></a>`;
+      searchResults.appendChild(div);
+    });
   }
-  results.forEach(page => {
-    const div = document.createElement('div');
-    div.classList.add('resultItem');
-    div.innerHTML = `<a href="${page.permalink}"><h3>${page.title}</h3><p>Tags: ${page.tags.join(', ')}</p></a>`;
-    searchResults.appendChild(div);
-  });
-
-  console.log(results)
+  searchResults.style.display = 'block'; // ensure dropdown shows
 }
 
 searchInput.addEventListener('input', () => {
@@ -43,4 +51,9 @@ searchInput.addEventListener('input', () => {
   );
   console.log(query, results)
   renderResults(results);
+});
+document.addEventListener('click', (e) => {
+  if (!document.querySelector('.searchWrapper').contains(e.target)) {
+    hideResults();
+  }
 });
