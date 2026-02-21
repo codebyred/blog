@@ -15,10 +15,13 @@ body {
   color: var(--text);
 }
 
-body.light{
+body.light {
   --bg: #dee4eb;
+  --bgSoft: #f0f4f8;    /* light mode softer background */
   --text: #0b1529;
+  --textSoft: #475569;  /* subtle dark text for borders etc. */
 }
+
 
 a {
   color: inherit;
@@ -60,14 +63,67 @@ a {
   font-size: 20px;
 }
 
-.searchButton {
+.searchWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  background-color: var(--bgSoft);
-  color: var(--textSoft);
-  padding: 5px;
-  border-radius: 10px;
+  justify-content: center;
+}
+
+.searchInputContainer {
+  position: relative;
+  width: 100%;
+}
+
+.searchInputContainer input {
+  width: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem; /* space for icon on right */
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.searchInputContainer .searchIcon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* allows typing without blocking */
+  fill: #cbd5e1;
+}
+
+#searchResults {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--bgSoft); /* softer background */
+  color: var(--text);        /* text color */
+  border: 1px solid var(--textSoft); /* subtle border */
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none; /* hidden by default */
+}
+
+#searchResults .resultItem {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+#searchResults .resultItem a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+#searchResults .resultItem:hover {
+  background-color: var(--bg); /* hover slightly darker/lighter */
 }
 
 .toggle {
