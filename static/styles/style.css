@@ -60,14 +60,35 @@ a {
   font-size: 20px;
 }
 
-.searchButton {
+.searchWrapper {
+  width: 100%;
+  max-width: 400px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  background-color: var(--bgSoft);
-  color: var(--textSoft);
-  padding: 5px;
-  border-radius: 10px;
+  justify-content: center;
+}
+
+.searchInputContainer {
+  position: relative;
+  width: 100%;
+}
+
+.searchInputContainer input {
+  width: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem; /* space for icon on right */
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.searchInputContainer .searchIcon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* allows typing without blocking */
+  fill: #cbd5e1;
 }
 
 .toggle {

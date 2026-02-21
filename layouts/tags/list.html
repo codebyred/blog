@@ -1,34 +1,64 @@
-{{ define "main" }} 
-{{ if eq .RelPermalink "/tags/"}} 
-{{ range $.Site.Taxonomies.tags.ByCount }}
-  <a href="/tags/{{ .Name }}">
-    # {{ .Name }} <small>({{.Count}})</small>
-  </a>
-{{end}}
-{{ else }}
-<div class="list">
-  {{ range .Paginator.Pages }}
-  <div class="listItem">
-    <div class="listItemTexts">
-      <h1 class="listItemTitle">
-        <a href="{{.Permalink}}">{{.Title}}</a>
-      </h1>
-      <p class="listItemDesc">{{.Params.description}}</p>
-      <div class="listItemDetail">
-        <span
-          >{{ range (.GetTerms "authors")}}
-          <a href="{{.Permalink}}">{{ .Name }}</a>
-          {{end}}</span
-        >
-        <time>{{ dateFormat .Site.Params.dateFormat .Date}}</time>
-      </div>
-      <div class="listItemCategories">
-        {{ range (.GetTerms "tags") }}
-        <a class="listItemCategory" href={{ .Permalink }}>{{ .Name }}</a>
-        {{ end }}
-      </div>
+{{ define "main" }}
+
+  {{/* ============================= */}}
+  {{/* TAXONOMY LIST PAGE (/tags/)  */}}
+  {{/* ============================= */}}
+  {{ if eq .Kind "taxonomy" }}
+
+    <div class="tagsList">
+      {{ range .Data.Terms.ByCount }}
+        <a class="tagItem" href="{{ .Page.RelPermalink }}">
+          # {{ .Page.Title }} <small>({{ .Count }})</small>
+        </a>
+      {{ end }}
     </div>
-  </div>
-  {{ end }} {{ template "_internal/pagination.html" . }}
-</div>
-{{end}} {{ end }}
+
+  {{/* ============================= */}}
+  {{/* ALL OTHER LIST PAGES         */}}
+  {{/* home, section, term pages    */}}
+  {{/* ============================= */}}
+  {{ else }}
+
+    <div class="list">
+      {{ range .Paginator.Pages }}
+        <div class="listItem">
+          <div class="listItemTexts">
+
+            <h1 class="listItemTitle">
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h1>
+
+            {{ with .Params.description }}
+              <p class="listItemDesc">{{ . }}</p>
+            {{ end }}
+
+            <div class="listItemDetail">
+              <span>
+                {{ range (.GetTerms "authors") }}
+                  <a href="{{ .RelPermalink }}">{{ .Name }}</a>
+                {{ end }}
+              </span>
+
+              <time>
+                {{ dateFormat .Site.Params.dateFormat .Date }}
+              </time>
+            </div>
+
+            <div class="listItemCategories">
+              {{ range (.GetTerms "tags") }}
+                <a class="listItemCategory" href="{{ .RelPermalink }}">
+                  {{ .Name }}
+                </a>
+              {{ end }}
+            </div>
+
+          </div>
+        </div>
+      {{ end }}
+
+      {{ template "_internal/pagination.html" . }}
+    </div>
+
+  {{ end }}
+
+{{ end }}

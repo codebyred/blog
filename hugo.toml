@@ -12,3 +12,13 @@ title = 'CodebyRed | Blog'
 
 [markup.highlight]
 noClasses = false
+
+[outputFormats.JSON]
+mediaType = "application/json"
+baseName = "index"
+isPlainText = true
+
+[outputs]
+home = ["HTML"]      # keep HTML
+page = ["HTML"]      # keep HTML
+section = ["HTML"]
