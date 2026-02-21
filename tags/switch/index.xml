@@ -3,4 +3,6 @@ Cisco separates VLAN configuration into two main components:
 Switchport VLAN Configuration (Layer 2)
 SVI – Switched Virtual Interface (Layer 3)
 Switchport VLAN (Layer 2 VLAN Switching) Description Switchport VLAN configuration defines:
-Which VLAN a port belongs to</description></item></channel></rss>
+Which VLAN a port belongs to</description></item><item><title>Vlan Configuration in Mikrotik Interface Vlan vs Bridge Vlan</title><link>https://codebyred.github.io/blog/vlan-configuration-in-mikrotik-interface-vlan-vs-bridge-vlan/</link><pubDate>Wed, 18 Feb 2026 15:12:11 +0600</pubDate><guid>https://codebyred.github.io/blog/vlan-configuration-in-mikrotik-interface-vlan-vs-bridge-vlan/</guid><description>Overview MikroTik supports VLAN implementation at both Layer 2 (Switching) and Layer 3 (Routing). Correctly distinguishing Interface VLAN and Bridge VLAN is essential for proper network segmentation, routing, and management.
+Interface VLAN (L3 VLAN Interface) Description An Interface VLAN is a logical Layer 3 interface created on top of a physical interface or bridge. It is used to assign IP addresses and route traffic for a specific VLAN.
+Purpose Provide IP addressing to VLANs</description></item></channel></rss>

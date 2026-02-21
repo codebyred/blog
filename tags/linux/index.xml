@@ -9,4 +9,12 @@ Bare-metal restore scenarios
 Disaster recovery preparation
 Exact disk state preservation
 Backup Transfer Methods Two supported transfer methods are available:
-Method A — SSH Streaming Pipeline Method B — SCP File Transfer Environment Example Component Value Volume Group ubuntu-vg Root Logical Volume ubuntu-lv Snapshot Name root_snap Backup Server 10.</description></item></channel></rss>
+Method A — SSH Streaming Pipeline Method B — SCP File Transfer Environment Example Component Value Volume Group ubuntu-vg Root Logical Volume ubuntu-lv Snapshot Name root_snap Backup Server 10.</description></item><item><title>Fixing Root SSH Login Failure on Ubuntu</title><link>https://codebyred.github.io/blog/fixing-root-ssh-login-failure-on-ubuntu/</link><pubDate>Sat, 14 Feb 2026 16:34:04 +0600</pubDate><guid>https://codebyred.github.io/blog/fixing-root-ssh-login-failure-on-ubuntu/</guid><description>Overview Attempting to log in as root over SSH may fail with errors such as:
+Connection closed by authenticating user root [preauth] pam_unix(sshd:auth): authentication failure Even after enabling:
+PermitRootLogin yes the login may still fail.
+Root Cause On Ubuntu systems:
+The root account is locked by default
+Password authentication over SSH is often disabled
+Example Check
+sudo passwd -S root Example Output:
+root L YYYY-MM-DD 0 99999 7 -1 Meaning:</description></item></channel></rss>

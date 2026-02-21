@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fix on CodebyRed | Blog</title><link>https://codebyred.github.io/blog/tags/fix/</link><description>Recent content in Fix on CodebyRed | Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 14 Feb 2026 16:34:04 +0600</lastBuildDate><atom:link href="https://codebyred.github.io/blog/tags/fix/index.xml" rel="self" type="application/rss+xml"/><item><title>Fixing Root SSH Login Failure on Ubuntu</title><link>https://codebyred.github.io/blog/fixing-root-ssh-login-failure-on-ubuntu/</link><pubDate>Sat, 14 Feb 2026 16:34:04 +0600</pubDate><guid>https://codebyred.github.io/blog/fixing-root-ssh-login-failure-on-ubuntu/</guid><description>Overview Attempting to log in as root over SSH may fail with errors such as:
+Connection closed by authenticating user root [preauth] pam_unix(sshd:auth): authentication failure Even after enabling:
+PermitRootLogin yes the login may still fail.
+Root Cause On Ubuntu systems:
+The root account is locked by default
+Password authentication over SSH is often disabled
+Example Check
+sudo passwd -S root Example Output:
+root L YYYY-MM-DD 0 99999 7 -1 Meaning:</description></item></channel></rss>
