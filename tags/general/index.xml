@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>General on CodebyRed | Blog</title><link>https://codebyred.github.io/blog/tags/general/</link><description>Recent content in General on CodebyRed | Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 19 Feb 2026 14:39:13 +0600</lastBuildDate><atom:link href="https://codebyred.github.io/blog/tags/general/index.xml" rel="self" type="application/rss+xml"/><item><title>Identify Nics and Drivers on Linux</title><link>https://codebyred.github.io/blog/identify-nics-and-drivers-on-linux/</link><pubDate>Thu, 19 Feb 2026 14:39:13 +0600</pubDate><guid>https://codebyred.github.io/blog/identify-nics-and-drivers-on-linux/</guid><description>Introduction When managing Linux servers or bare-metal systems, it’s crucial to know what network interface cards (NICs) are installed, their exact models, and which drivers they use. This is especially important for Intel NICs like X710, I210, or X520, which may have different capabilities (1G, 10G, offload features).
+This guide shows you how to discover all NICs on your system using built-in Linux tools like ethtool, lspci, and lshw.
+1. List All Network Interfaces Start by listing the network interfaces on your system:</description></item><item><title>Bgp Protocol</title><link>https://codebyred.github.io/blog/bgp-protocol/</link><pubDate>Thu, 19 Feb 2026 10:20:00 +0600</pubDate><guid>https://codebyred.github.io/blog/bgp-protocol/</guid><description>BGP Speakers and Peers BGP Speaker – A router running the BGP protocol. BGP Peer (Neighbor) – Two BGP speakers with an established BGP session between them.
+Scenario: 5 Routers Running BGP
+Routers:
+R1, R2, R3, R4, R5
+All routers are BGP speakers because BGP is enabled.
+However:
+They are only BGP peers with routers they form sessions with.
+If no BGP session exists between two routers, they are not peers.</description></item></channel></rss>
