@@ -2,7 +2,7 @@
 title = 'Bgp Protocol'
 description = "" 
 date = 2026-02-19T10:20:00+06:00
-draft = false
+draft = true
 tags = ["general"]
 authors = ["Redoan"]
 +++
