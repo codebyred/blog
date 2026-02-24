@@ -1,5 +1,5 @@
 +++
-title = 'Management Control and Data Planes'
+title = 'Management, Control and Data Planes'
 description = "" 
 date = 2026-02-23T15:14:13+06:00
 draft = false

@@ -1,5 +1,5 @@
 +++
-title = 'Vlan Configuration in Mikrotik Interface Vlan vs Bridge Vlan'
+title = 'Vlan Configuration in Mikrotik: Interface Vlan vs Bridge Vlan'
 description = "" 
 date = 2026-02-18T15:12:11+06:00
 draft = false
