@@ -26,16 +26,63 @@ authors = ["Redoan"]
 
 # VM-TG Configuration
 
-Install trex
+## Install trex
 
-Run the following command
+## non interactive mode
+
+**How to run:**
+```
+ ./t-rex-64 -f <profile.yaml> -m <multiplier> -d <duration>
+
+```
+
+Example: Start the t-rex server with `http_simple.yaml` profile
 
 ```
 sudo ./t-rex-64 -f cap2/http_simple.yaml -d 30 -m i -c i -k 5 --nc
 ```
+
 After running this command you may face the following issues, Go to [Issues](#issues) section to find proper fix.
 
+**Workflow**: Executes a single scenario. It is ideal for CI/CD pipelines.
+**Key Capabilities:**
+* Automation: Perfect for embedding in shell scripts.
+* Predictability: Runs a fixed test scenario, ensuring consistent results.
+* Simplicity: No need to manage a separate client-server connection.
 
+## Interactive mode
+
+**How to run:** 
+```
+./t-rex-64 -i
+```
+
+In this mode you run the server, then use trex-console or the Python API (e.g., stl_client) in another terminal to connect and send commands.
+
+Key Capabilities:
+* TUI: Provides a live, refreshing Terminal User Interface showing port status, PPS (Packets Per Second), and BPS (Bits Per Second).
+* Real-time Control: You can stop/start traffic, change the multiplier (load) without restarting the server.
+* GUI Support: Works with the TRex Stateless GUI.
+* Capture: Allows capturing and monitoring traffic in real-time with BPF filters. 
+
+### stl mode(L2/L3 stateless performance testing)
+
+If you want to run scripts in `stl` folder, you need to run the `t-rex` server in stl mode
+
+```
+sudo ./t-rex-64 -stl
+```
+
+open another console then run trex-console. In trex console, run the following command
+```
+start -f stl/imix.py
+```
+
+### astf mode(L4-L7 stateful application testing)
+
+```
+sudo ./t-rex-64 --astf
+```
 
 # VM-DUT Configuration
 This is a simple ubuntu machine acting like a Firewall/FTD. The netplan config is following
@@ -311,3 +358,4 @@ In summary, zero-copy removes the data copy overhead, but it places a higher dep
 2. https://blog.hacksbrain.com/cisco-trex-packet-generator-step-by-step
 3. https://github.com/s5uishida/install_trex?tab=readme-ov-file#check
 4. https://github.com/cisco-system-traffic-generator/trex-core
+5. https://promwad.com/news/cisco-trex-traffic-generator
