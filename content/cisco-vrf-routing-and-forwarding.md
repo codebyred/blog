@@ -9,6 +9,12 @@ authors = ["Redoan"]
 
 # Topology
 
+# Overview
+* Only ISP(PE) router needs VRF
+* CE routers use normal OSPF
+* OSPF runs between CE ↔ PE
+* PE shares routes inside VRF
+
 # Configuration
 ## ISP
 ```
@@ -94,9 +100,11 @@ ISP(config-if)# no shutdown
 
 ISP(config-if)# end
 ```
-Enabling Routing For Interfaces
+Enabling Routing For Interfaces. For ospf routing, the neighbours must be in same subnet
 ```
 router ospf 1 vrf CustomerX
+ network 10.10.10.0 0.0.0.255 area 0
+ network 20.20.20.0 0.0.0.255 area 0
 ```
 ## X1
 Interface configuration
@@ -104,6 +112,24 @@ Interface configuration
 Router(config)#int g0/0
 Router(config-if)#ip address 10.10.10.1 255.255.255.0
 Router(config-if)#no shutdown
+```
+Routing
+```
+router ospf 1
+ network 10.10.10.0 0.0.0.255 area 0
+```
+
+## X2
+Interface configuration
+```
+Router(config)#int g0/0
+Router(config-if)#ip address 20.20.20.1 255.255.255.0
+Router(config-if)#no shutdown
+```
+Routing
+```
+router ospf 1
+ network 20.20.20.0 0.0.0.255 area 0
 ```
 
 # References
