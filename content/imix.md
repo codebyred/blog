@@ -14,10 +14,7 @@ Typical IMIX packet size distribution
 A common IMIX profile is:
 * 64 bytes
 * 570 bytes
-* 1518 bytes
-Often in a ratio like:
-```
-7 : 4 : 1
+* 1518 bytesOften in a ratio like:ay7 : 4 : 1
 ```
 (Exact ratios vary by vendor or benchmark.)
 
