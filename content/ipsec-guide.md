@@ -7,8 +7,6 @@ tags = ["general"]
 authors = ["Redoan"]
 +++
 
-# IPsec Guide
-
 ## Introduction
 
 ![IPsec Packet Structure](/images/ipsec-packet.webp)
