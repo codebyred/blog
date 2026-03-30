@@ -36,6 +36,18 @@ Protocols are the "rules" that determine how data travels through the tunnel. Ch
 
 ---
 
+## 3. Deployment Architecture: Policy-Based vs. Route-Based
+Even within a protocol like IPsec, there are two fundamentally different ways to "steer" traffic into an encrypted tunnel. This choice defines how the network handles scaling and routing.
+
+| Feature |	Policy-Based VPN (Legacy) |	Route-Based VPN (Modern) |
+| :--- | :--- | :--- |
+| **Logic** |	Triggered by an Access Control List (ACL). | Triggered by the system Routing Table. |
+| **Mechanism** |	"If packet matches X, then encrypt." | "If packet is sent to interface vti0, then encrypt." |
+| **Interface** |	No virtual interface; tied to physical port. | Uses a Virtual Tunnel Interface (VTI). |
+| **Routing** |	Static only; cannot easily use OSPF/BGP. |	Supports Dynamic Routing (BGP, OSPF). |
+| **Scalability** |	Low. Every new subnet requires a manual update. | High. New subnets are learned via routing. |
+| **Best For** |	Simple, fixed site-to-site tunnels. | Cloud (AWS/Azure) & complex mesh networks. |
+
 ## Summary
 For the best balance of modern tech, most users should look for **WireGuard** or **OpenVPN**. If you are building a corporate environment, a **Site-to-Site** setup using **IPsec** is the industry standard for stability.
 
