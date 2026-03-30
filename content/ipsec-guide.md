@@ -11,7 +11,7 @@ authors = ["Redoan"]
 
 ## Introduction
 
-![IPsec Packet Structure](/public/images/ipsec-packet.webp)
+![IPsec Packet Structure](/images/ipsec-packet.webp)
 
 **IPsec (Internet Protocol Security)** is a suite of protocols used to
 secure IP communications by authenticating and encrypting each IP packet
