@@ -31,8 +31,6 @@ Unlike the "Main Mode" and "Aggressive Mode" of IKEv1, IKEv2 simplifies the proc
 1.  **IKE_SA_INIT**: Negotiates cryptographic algorithms and performs a Diffie-Hellman (DH) exchange.
 2.  **IKE_AUTH**: Authenticates the identities of both peers and establishes the first **Child SA** (the tunnel that actually carries data).
 
-
-
 ---
 
 ## NAT Traversal (NAT-T)
@@ -103,8 +101,16 @@ When NAT-T is active in **Tunnel Mode**, the packet structure follows this speci
    - It lookups the **SPI** in the **SAD** to find the decryption key.
    - It decrypts and then verifies against the **SPD** to ensure the packet was supposed to be encrypted.
 
+## The "Brain" of the Operation: SPD and SAD
+To handle these tunnels efficiently, the system kernel maintains two specialized databases:
+
+Security Policy Database (SPD): The Decision Maker. It contains the rules that decide if a packet should be Encrypted, Bypassed (sent in cleartext), or Discarded (dropped).
+
+Security Association Database (SAD): The Vault. Once the SPD decides to encrypt, the kernel looks here to find the active encryption keys and the SPI (Security Parameter Index)—a unique ID tag that ensures the receiver uses the correct key for that specific session.
+
 ## References
 
 1.  **RFC 7296**: Internet Key Exchange Protocol Version 2 (IKEv2)
 2.  **RFC 3948**: UDP Encapsulation of IPsec ESP Packets
 3.  **Unixwiz**: [An Illustrated Guide to IPsec](http://www.unixwiz.net/techtips/iguide-ipsec.html)
+4. **IpsecGuru**: https://ipsec.guru/
