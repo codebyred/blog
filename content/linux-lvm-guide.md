@@ -6,3 +6,6 @@ draft = true
 tags = ["general"]
 authors = ["Redoan"]
 +++
+
+# References
+1. **Extending Default LVM Partition**: https://packetpushers.net/blog/ubuntu-extend-your-default-lvm-space/
