@@ -2,7 +2,7 @@
 title = 'Fixing Ubuntu Installer Crashes'
 description = "" 
 date = 2026-04-01T16:35:29+06:00
-draft = false
+draft = true
 tags = ["general"]
 authors = ["Redoan"]
 +++
