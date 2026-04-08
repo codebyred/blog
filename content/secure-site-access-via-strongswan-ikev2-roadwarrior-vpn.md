@@ -3,7 +3,7 @@ title = 'Secure Site Access via Strongswan Ikev2 Roadwarrior Vpn'
 description = "" 
 date = 2026-04-07T13:03:10+06:00
 draft = false
-tags = ["linux","ipsec","strongswan,"roadwarrior"]
+tags = ["linux","ipsec","strongswan","roadwarrior"]
 authors = ["Redoan"]
 +++
 
